@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.navigation.NavigationView;
 import com.lwh147.rtms.R;
+import com.lwh147.rtms.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     //定义一个变量，来标识是否退出
@@ -88,6 +89,20 @@ public class MainActivity extends AppCompatActivity {
                         actionBar.setTitle(R.string.nav_resident);
                         // 其他操作
                         replaceFragment(ResidentFragment.newInstance());
+                        break;
+                    case R.id.nav_statistcs:
+                        actionBar.setTitle(R.string.nav_statistcs);
+                        // 其他操作
+                        replaceFragment(StatistcsFragment.newInstance());
+                        break;
+                    case R.id.nav_logout:
+                        // 跳转到登录页面
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        // 携带登陆用户信息
+                        // intent.putExtra("LoggedInUser", JSON.toJSONString(new LoggedInUser(id, name, phone)));
+                        startActivity(intent);
+                        // 结束当前activity，使其不能通过返回返回至当前界面
+                        exit();
                         break;
                     default:
                         break;
@@ -159,12 +174,19 @@ public class MainActivity extends AppCompatActivity {
         if (!isExit) {
             isExit = true;
             Toast.makeText(getApplicationContext(), R.string.exit_confirm, Toast.LENGTH_SHORT).show();
-            //利用handler延迟发送更改状态信息
+            // 利用handler延迟发送更改状态信息
             handler.sendEmptyMessageDelayed(0, 2000);
         } else {
             // 退出应用
             this.finish();
         }
+    }
+
+    /**
+     * 给回调函数使用
+     **/
+    private void exit() {
+        this.finish();
     }
 
 }

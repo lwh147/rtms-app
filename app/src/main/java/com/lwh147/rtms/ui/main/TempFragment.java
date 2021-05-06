@@ -31,7 +31,6 @@ public class TempFragment extends Fragment {
     private View view;
     private List<TempInfo> tempInfos;
     private ProgressBar loadingProgressBar;
-    // private final MainActivity mainActivity = (MainActivity) this.getActivity();
 
     public TempFragment() {
         // Required empty public constructor
@@ -81,11 +80,12 @@ public class TempFragment extends Fragment {
         new Thread() {
             public void run() {
                 Map<String, String> params = new HashMap<>();
-                // 设置查询条件为最近15天的
+                // 设置查询条件为最近15天的前20条数据
                 params.put("days", "15");
+                params.put("pageSize", "20");
                 Log.i("【log.i】", "即将发送请求");
                 try {
-                    String result = RequestUtil.Get("http://g7ga3c.natappfree.cc/tempInfo", params);
+                    String result = RequestUtil.Get("http://lwh147.natapp1.cc/tempInfo", params);
                     Log.i("【log.i】请求结果：", result);
                     JSONObject jsonObject = JSON.parseObject(result);
                     if (jsonObject.getInteger("code") != 0) {

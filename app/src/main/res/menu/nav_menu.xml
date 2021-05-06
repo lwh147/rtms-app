@@ -5,10 +5,21 @@
                 android:id="@+id/nav_temp_info"
                 android:icon="@mipmap/ic_home"
                 android:title="@string/nav_temp_info"/>
+
         <item
                 android:id="@+id/nav_resident"
                 android:icon="@mipmap/ic_resident"
                 android:title="@string/nav_resident"/>
+
+        <item
+                android:id="@+id/nav_statistcs"
+                android:icon="@mipmap/ic_statistcs"
+                android:title="@string/nav_statistcs"/>
+
+        <item
+                android:id="@+id/nav_logout"
+                android:icon="@mipmap/ic_logout"
+                android:title="@string/nav_logout"/>
 
     </group>
 

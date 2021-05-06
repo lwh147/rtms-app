@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         //         data.put("password", password);
         //         Log.i("【log.i】", "即将发送请求");
         //         try {
-        //             String result = RequestUtil.Post("http://g7ga3c.natappfree.cc/admin/loginFromApp", JSON.toJSONString(data));
+        //             String result = RequestUtil.Post("http://lwh147.natapp1.cc/admin/loginFromApp", JSON.toJSONString(data));
         //             Log.i("【log.i】请求结果：", result);
         //             JSONObject jsonObject = JSON.parseObject(result);
         //             if (jsonObject.getInteger("code") != 0) {

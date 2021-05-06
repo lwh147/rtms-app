@@ -16,6 +16,8 @@
     <!-- 导航菜单 -->
     <string name="nav_resident">居民信息</string>
     <string name="nav_temp_info">体温监测信息</string>
+    <string name="nav_statistcs">统计数据</string>
+    <string name="nav_logout">退出</string>
     <string name="nav_admin_name_prefix">你好，</string>
     <string name="nav_admin_phone_prefix">TEL：</string>
     <string name="nav_admin_phone_default">TEL：1234567890</string>
@@ -28,4 +30,44 @@
 
     <!-- 居民信息fragment -->
     <string name="frag_resident_des">这是居民信息</string>
+    <string name="frag_resident_search_empty">没有搜索到东西，请换个关键词试试</string>
+    <string-array name="frag_resident_building">
+        <item>楼号</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="frag_resident_entrance">
+        <item>单元号</item>
+        <item>01</item>
+        <item>02</item>
+    </string-array>
+
+    <string-array name="frag_resident_room">
+        <item>门牌号</item>
+        <item>101</item>
+        <item>102</item>
+        <item>201</item>
+        <item>202</item>
+        <item>301</item>
+        <item>302</item>
+        <item>401</item>
+        <item>402</item>
+        <item>501</item>
+        <item>502</item>
+        <item>601</item>
+        <item>602</item>
+    </string-array>
+
+    <!-- 统计数据fragment -->
+    <string name="frag_statistcs_des">这是统计数据</string>
+
 </resources>
