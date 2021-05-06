@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:padding="10dp"
+                android:background="@mipmap/nav_admin_background">
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/admin_name"
+              android:textColor="@color/colorWhite"
+              android:textSize="20sp"
+              android:text="@string/nav_admin_name_default"
+              android:layout_marginTop="110dp"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/admin_phone"
+              android:textColor="@color/colorWhite"
+              android:textSize="15sp"
+              android:text="@string/nav_admin_phone_default"
+              android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
