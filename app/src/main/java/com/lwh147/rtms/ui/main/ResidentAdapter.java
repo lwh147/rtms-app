@@ -34,7 +34,18 @@ public class ResidentAdapter extends RecyclerView.Adapter<ResidentAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Resident resident = residents.get(position);
+        if (position == 0) {
+            // 设置标题
+            holder.textViewOrder.setText("#");
+            holder.textViewName.setText("姓名");
+            holder.textViewSex.setText("性别");
+            holder.textViewBuilding.setText("楼号");
+            holder.textViewEntrance.setText("单元号");
+            holder.textViewRoom.setText("房间号");
+            holder.textViewPhone.setText("联系电话");
+            return;
+        }
+        Resident resident = residents.get(position - 1);
         holder.textViewOrder.setText(String.valueOf(resident.getOrder()));
         holder.textViewName.setText(resident.getName());
         holder.textViewSex.setText(resident.getSex() == 0 ? "男" : "女");
@@ -46,7 +57,7 @@ public class ResidentAdapter extends RecyclerView.Adapter<ResidentAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return residents.size();
+        return residents.size() + 1;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

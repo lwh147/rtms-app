@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="400dp"
+              android:layout_height="400dp"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp"
+              android:paddingLeft="15dp"
+              android:paddingRight="15dp"
+              android:orientation="vertical"
+              android:background="@color/colorGray">
+
+    <Button
+            android:id="@+id/btn_cancel_high_opion"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:background="@mipmap/ic_delete"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_gravity="end"
+            android:orientation="vertical">
+
+        <TextView android:layout_width="match_parent"
+                  android:id="@+id/resident_name"
+                  android:layout_height="wrap_content"
+                  android:textSize="20sp"
+                  android:layout_marginBottom="10dp"
+                  android:layout_gravity="start"
+                  android:gravity="center"/>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/frag_statistcs_duration"
+                      android:textSize="16sp"
+                      android:layout_gravity="end"
+                      android:layout_marginStart="20dp"
+                      android:layout_marginEnd="2dp"
+                      android:layout_weight="1"
+                      android:gravity="end"/>
+
+            <Spinner
+                    android:id="@+id/spinner_duration_resident"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="end"
+                    android:background="@drawable/spinner"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/chart"
+            android:id="@+id/line_chart_resident"/>
+
+    <ProgressBar
+            android:id="@+id/loading_resident"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="-220dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/password"
+            app:layout_constraintStart_toStartOf="@+id/password"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"/>
+
+</LinearLayout>

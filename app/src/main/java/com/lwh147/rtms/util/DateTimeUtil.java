@@ -72,12 +72,13 @@ public class DateTimeUtil {
     }
 
     /**
+     * @param time
      * @return yyyy-MM-dd HH:mm:ss
      * 2012-12-29 23:47:36
      */
-    public static String getFullDate() {
+    public static String getFullDate(Date time) {
         SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return simple.format(calendar.getTime());
+        return simple.format(time);
     }
 
     /**
@@ -93,7 +94,9 @@ public class DateTimeUtil {
         long time = date.getTime() / 1000;
         long now = new Date().getTime() / 1000;
         long ago = now - time;
-        if (ago <= ONE_HOUR)
+        if (ago < ONE_MINUTE) {
+            return "刚刚";
+        } else if (ago <= ONE_HOUR)
             return ago / ONE_MINUTE + "分钟前";
         else if (ago <= ONE_DAY)
             return ago / ONE_HOUR + "小时" + (ago % ONE_HOUR / ONE_MINUTE)

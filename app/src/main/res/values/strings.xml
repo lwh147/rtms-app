@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">rtms</string>
+    <string name="app_name">体温监测</string>
     <string name="network_error">网络错误！</string>
+    <string name="download_error">导出失败！</string>
     <string name="exit_confirm">再按一次退出</string>
+    <string name="action_meanu_refresh_des">刷新</string>
+    <string name="action_meanu_download_des">下载最近十五天体温数据</string>
 
     <!-- Strings related to login -->
     <string name="prompt_account">请输入用户名</string>
@@ -31,8 +34,12 @@
     <!-- 居民信息fragment -->
     <string name="frag_resident_des">这是居民信息</string>
     <string name="frag_resident_search_empty">没有搜索到东西，请换个关键词试试</string>
+    <string name="frag_resident_search_building">楼号:</string>
+    <string name="frag_resident_search_entrance">单元号:</string>
+    <string name="frag_resident_search_room">房间号:</string>
+    <string name="frag_resident_search_page">页码:</string>
     <string-array name="frag_resident_building">
-        <item>楼号</item>
+        <item>#</item>
         <item>01</item>
         <item>02</item>
         <item>03</item>
@@ -44,15 +51,13 @@
         <item>09</item>
         <item>10</item>
     </string-array>
-
     <string-array name="frag_resident_entrance">
-        <item>单元号</item>
+        <item>#</item>
         <item>01</item>
         <item>02</item>
     </string-array>
-
     <string-array name="frag_resident_room">
-        <item>门牌号</item>
+        <item>#</item>
         <item>101</item>
         <item>102</item>
         <item>201</item>
@@ -66,8 +71,21 @@
         <item>601</item>
         <item>602</item>
     </string-array>
+    <string-array name="frag_resident_page">
+        <item>1</item>
+    </string-array>
 
     <!-- 统计数据fragment -->
-    <string name="frag_statistcs_des">这是统计数据</string>
+    <string name="frag_statistcs_unnormal">体温异常人次：</string>
+    <string name="frag_statistcs_total">共检测人次：</string>
+    <string name="frag_statistcs_chart_total">共检测人次变化折线图</string>
+    <string name="frag_statistcs_duration">时间：</string>
+    <string name="frag_statistcs_chart_unnormal">体温异常人次变化折线图</string>
+    <string-array name="frag_statistcs_duration">
+        <item>24小时内</item>
+        <item>三天内</item>
+        <item>七天内</item>
+        <item>15天内</item>
+    </string-array>
 
 </resources>

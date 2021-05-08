@@ -164,7 +164,7 @@ public class RequestUtil extends Thread {
      * @return java.lang.String
      **/
     public static String Get(String api) throws IOException {
-        return Post(api, null);
+        return Get(api, null);
     }
 
     /**

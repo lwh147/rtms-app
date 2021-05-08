@@ -22,6 +22,10 @@ android {
     }
 }
 
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -33,7 +37,9 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.75'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

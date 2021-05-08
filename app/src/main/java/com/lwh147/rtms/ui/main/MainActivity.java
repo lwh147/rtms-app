@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -26,6 +27,12 @@ import com.lwh147.rtms.R;
 import com.lwh147.rtms.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
+    // 因为有操控下面两个frag的方法，所以需要保存一下
+    private TempFragment tempFragment;
+    private StatistcsFragment statistcsFragment;
+
+    private Menu menu;
+
     //定义一个变量，来标识是否退出
     private static boolean isExit = false;
 
@@ -38,6 +45,16 @@ public class MainActivity extends AppCompatActivity {
             isExit = false;
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // 加载刷新按钮
+        getMenuInflater().inflate(R.menu.right_meanu, menu);
+        // 隐藏下载菜单
+        menu.findItem(R.id.action_meanu_download).setVisible(false);
+        this.menu = menu;
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +80,9 @@ public class MainActivity extends AppCompatActivity {
         // 设置导航默认激活菜单项
         navigationView.setCheckedItem(R.id.nav_temp_info);
 
+        tempFragment = TempFragment.newInstance();
         // 设置默认激活菜单项内容
-        replaceFragment(TempFragment.newInstance());
+        replaceFragment(tempFragment);
 
         // 设置菜单监听回调
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -83,17 +101,30 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_temp_info:
                         actionBar.setTitle(R.string.nav_temp_info);
                         // 其他操作
-                        replaceFragment(TempFragment.newInstance());
+                        tempFragment = TempFragment.newInstance();
+                        replaceFragment(tempFragment);
+                        // 显示刷新按钮
+                        menu.findItem(R.id.action_meanu_refresh).setVisible(true);
+                        // 隐藏下载按钮
+                        menu.findItem(R.id.action_meanu_download).setVisible(false);
                         break;
                     case R.id.nav_resident:
                         actionBar.setTitle(R.string.nav_resident);
                         // 其他操作
                         replaceFragment(ResidentFragment.newInstance());
+                        // 隐藏按钮
+                        menu.findItem(R.id.action_meanu_refresh).setVisible(false);
+                        menu.findItem(R.id.action_meanu_download).setVisible(false);
                         break;
                     case R.id.nav_statistcs:
                         actionBar.setTitle(R.string.nav_statistcs);
                         // 其他操作
-                        replaceFragment(StatistcsFragment.newInstance());
+                        statistcsFragment = StatistcsFragment.newInstance();
+                        replaceFragment(statistcsFragment);
+                        // 显示下载按钮
+                        menu.findItem(R.id.action_meanu_download).setVisible(true);
+                        // 隐藏刷新按钮
+                        menu.findItem(R.id.action_meanu_refresh).setVisible(false);
                         break;
                     case R.id.nav_logout:
                         // 跳转到登录页面
@@ -149,6 +180,13 @@ public class MainActivity extends AppCompatActivity {
         // 当点击home按钮时打开滑动菜单
         if (item.getItemId() == android.R.id.home) {
             ((DrawerLayout) findViewById(R.id.drawerLayout)).openDrawer(GravityCompat.START);
+        }
+        // 点击刷新按钮时刷新数据
+        if (item.getItemId() == R.id.action_meanu_refresh) {
+            tempFragment.initData();
+        }
+        if (item.getItemId() == R.id.action_meanu_download) {
+            statistcsFragment.download();
         }
         return super.onOptionsItemSelected(item);
     }

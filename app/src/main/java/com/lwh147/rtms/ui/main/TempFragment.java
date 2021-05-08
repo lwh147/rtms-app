@@ -1,6 +1,8 @@
 package com.lwh147.rtms.ui.main;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,15 @@ public class TempFragment extends Fragment {
     private List<TempInfo> tempInfos;
     private ProgressBar loadingProgressBar;
 
+    final Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            initData();
+            handler.postDelayed(this, 10000);
+        }
+    };
+
     public TempFragment() {
         // Required empty public constructor
     }
@@ -55,12 +66,21 @@ public class TempFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_temp, container, false);
         loadingProgressBar = view.findViewById(R.id.loading);
         loadingProgressBar.setVisibility(View.VISIBLE);
+
         // 模拟数据
         initData();
         // 初始化recyclerView
         initRecyclerView();
-        // Inflate the layout for this fragment
+
+        handler.postDelayed(runnable, 10000);
+
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        handler.removeCallbacks(runnable);
+        super.onDestroy();
     }
 
     public void initRecyclerView() {
@@ -72,10 +92,14 @@ public class TempFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(tempAdapter);
         // 设置item的分割线
-        recyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
+        if (recyclerView.getItemDecorationCount() == 0) {
+            recyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
+        }
     }
 
     public void initData() {
+        // 隐藏加载动画
+        loadingProgressBar.setVisibility(View.VISIBLE);
         tempInfos = new ArrayList<>();
         new Thread() {
             public void run() {
@@ -160,10 +184,16 @@ public class TempFragment extends Fragment {
                 // 创建并设置adapter
                 TempAdapter tempAdapter = new TempAdapter(tempInfos);
                 recyclerView.setAdapter(tempAdapter);
-                // 设置item的分割线
-                recyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), DividerItemDecoration.VERTICAL));
                 // 隐藏加载动画
                 loadingProgressBar.setVisibility(View.GONE);
+                if (tempInfos.get(0).getTemp() > 37.0f) {
+                    new AlertDialog.Builder(mainActivity)
+                            .setTitle("警告！")
+                            .setMessage("检测到体温异常人员：" + tempInfos.get(0).getResidentName())
+                            .setPositiveButton("确定", null)
+                            .show();
+                }
+                Toast.makeText(mainActivity.getApplicationContext(), "刷新成功", Toast.LENGTH_SHORT).show();
             }
         });
     }
