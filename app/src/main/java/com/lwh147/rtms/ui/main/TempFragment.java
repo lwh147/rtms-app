@@ -30,6 +30,7 @@ import java.util.*;
  * create an instance of this fragment.
  */
 public class TempFragment extends Fragment {
+    private Long last = 0L;
     private View view;
     private List<TempInfo> tempInfos;
     private ProgressBar loadingProgressBar;
@@ -186,7 +187,8 @@ public class TempFragment extends Fragment {
                 recyclerView.setAdapter(tempAdapter);
                 // 隐藏加载动画
                 loadingProgressBar.setVisibility(View.GONE);
-                if (tempInfos.get(0).getTemp() > 37.0f) {
+                if (tempInfos.get(0).getTemp() > 37.0f && !last.equals(tempInfos.get(0).getTime().getTime())) {
+                    last = tempInfos.get(0).getTime().getTime();
                     new AlertDialog.Builder(mainActivity)
                             .setTitle("警告！")
                             .setMessage("检测到体温异常人员：" + tempInfos.get(0).getResidentName())
