@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">体温监测</string>
+    <string name="app_name">体温监控</string>
     <string name="network_error">网络错误！</string>
     <string name="download_error">导出失败！</string>
     <string name="exit_confirm">再按一次退出</string>
@@ -14,11 +14,11 @@
     <string name="invalid_username">用户名为10位，由数字、字母或下划线、点组成</string>
     <string name="invalid_password">密码为6位纯数字</string>
     <string name="login_failed">用户名或密码错误！</string>
-    <string name="app_name_chinese">居民体温监测系统</string>
+    <string name="app_name_chinese">居民体温监控系统</string>
 
     <!-- 导航菜单 -->
     <string name="nav_resident">居民信息</string>
-    <string name="nav_temp_info">体温监测信息</string>
+    <string name="nav_temp_info">体温监控信息</string>
     <string name="nav_statistcs">统计数据</string>
     <string name="nav_logout">退出</string>
     <string name="nav_admin_name_prefix">你好，</string>
