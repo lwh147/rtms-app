@@ -5,6 +5,9 @@ import android.os.Environment;
 import android.os.StatFs;
 import com.lwh147.rtms.data.model.TempInfo;
 import jxl.Workbook;
+import jxl.format.Border;
+import jxl.format.BorderLineStyle;
+import jxl.format.Colour;
 import jxl.write.*;
 
 import java.io.File;
@@ -57,6 +60,13 @@ public class ExcelUtil {
             Label name = new Label(1, i + 1, tempInfo.getResidentName());
             Label temp = new Label(2, i + 1, String.valueOf(tempInfo.getTemp()));
 
+            if(tempInfo.getTemp() > 37.0f){
+                WritableCellFormat writableCellFormat = getWarning();
+                time.setCellFormat(writableCellFormat);
+                name.setCellFormat(writableCellFormat);
+                temp.setCellFormat(writableCellFormat);
+            }
+
             sheet.addCell(time);
             sheet.addCell(name);
             sheet.addCell(temp);
@@ -93,6 +103,23 @@ public class ExcelUtil {
             format.setBorder(Border.ALL, BorderLineStyle.THIN,
                     Colour.BLACK);// 黑色边框
             format.setBackground(Colour.YELLOW);// 黄色背景
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+        return format;
+    }
+
+    public static WritableCellFormat getWarning() {
+        WritableFont font = new WritableFont(WritableFont.TIMES, 10,
+                WritableFont.NO_BOLD);// 定义字体
+        try {
+            font.setColour(Colour.RED);// 红色字体
+        } catch (WriteException e1) {
+            e1.printStackTrace();
+        }
+        WritableCellFormat format = new WritableCellFormat(font);
+        try {
+            format.setBackground(Colour.LIGHT_ORANGE);// 浅红色背景
         } catch (WriteException e) {
             e.printStackTrace();
         }
