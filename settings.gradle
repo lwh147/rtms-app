@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "rtms"
+rootProject.name = "resident-temperature-monitoring-system-app"
